@@ -6,31 +6,44 @@ using System.Threading.Tasks;
 
 namespace KFU_Lesson_10
 {
+
+
+
+    public interface IStrategy
+    {
+        void Play(List<Team> team);
+    }
+
+
+
     internal class Program
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
             List<Team> teams = new List<Team>(); 
             for (int i=0;i < 4; i++)
             {
+                Console.WriteLine("Введите название страны участвующей в Большой Гонке ");
                 teams.Add(new Team(Console.ReadLine()));
             }
-            ((IBeach)game).Play(teams);
-            ((IComputer)game).Play(teams);
-            ((IFishing)game).Play(teams);
-            ((IMail)game).Play(teams);
-            ((IMouse)game).Play(teams);
-            ((IOcean)game).Play(teams);
-            ((ISlide)game).Play(teams);
-
-            Console.WriteLine("Все игры закончились давайте подсчитаем общие баллы");
-            for (int i = 0; i<teams.Count; i++)
-            {
-                Console.WriteLine($"Команда {teams[i].Name} получила {teams[i].Ball} баллов");
-            }
-            Console.WriteLine();
             
+            Game game = new Game(teams);
+            game.ChoiceGame(new Beach());
+            game.PlayGame();
+            game.ChoiceGame(new Computer());
+            game.PlayGame();
+            game.ChoiceGame(new Fishing());
+            game.PlayGame();
+            game.ChoiceGame(new Mail());
+            game.PlayGame();
+            game.ChoiceGame(new Mouse());
+            game.PlayGame();
+            game.ChoiceGame(new Ocean());
+            game.PlayGame();
+            game.ChoiceGame(new Slide());
+            game.PlayGame();
+            game.Print();
+            Console.ReadLine();
         }
 
     }

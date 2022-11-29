@@ -44,13 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
-    <Compile Include="Games\IBeach.cs" />
-    <Compile Include="Games\IMouse.cs" />
-    <Compile Include="Games\IComputer.cs" />
-    <Compile Include="Games\IFishing.cs" />
-    <Compile Include="Games\IMail.cs" />
-    <Compile Include="Games\IOcean.cs" />
-    <Compile Include="Games\ISlide.cs" />
+    <Compile Include="Games\Beach.cs" />
+    <Compile Include="Games\Mouse.cs" />
+    <Compile Include="Games\Computer.cs" />
+    <Compile Include="Games\Fishing.cs" />
+    <Compile Include="Games\Mail.cs" />
+    <Compile Include="Games\Ocean.cs" />
+    <Compile Include="Games\Slide.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />

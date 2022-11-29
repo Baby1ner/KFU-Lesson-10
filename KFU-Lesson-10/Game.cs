@@ -6,93 +6,38 @@ using System.Threading.Tasks;
 
 namespace KFU_Lesson_10
 {
-    internal class Game : IBeach, IComputer, IFishing, IMail, IMouse, IOcean, ISlide
+    internal class Game 
     {
-        static Random random = new Random();
+        public IStrategy strategy { get; set; }
+        public List<Team> teams { get; set; }
 
-
-        void IBeach.Play(List<Team> teams)
+        public Game(List<Team> teams)
         {
-            Console.WriteLine("Начинается игра на пляжу");
-            for (int i = 0; i < teams.Count; i++)
-            {
-                int rand = random.Next(1, 5);
-                Console.WriteLine($"Команда {teams[i].Name} получила {rand} очков");
-                teams[i].Ball += rand;
-            }
-            Console.WriteLine();
+            this.teams = teams;
+        }
+        public void ChoiceGame(IStrategy strategy)
+        {
+            this.strategy = strategy;
         }
 
-        void IComputer.Play(List<Team> teams)
+
+        public void PlayGame()
         {
-            Console.WriteLine("Начинается игра в доту");
-            for (int i = 0; i < teams.Count; i++)
+            if (strategy == null)
             {
-                int rand = random.Next(1, 8);
-                Console.WriteLine($"Команда {teams[i].Name} получила {rand} очков");
-                teams[i].Ball += rand;
+                Console.WriteLine("Такой игры не существует");
+                return;
             }
-            Console.WriteLine();
+
+            strategy.Play(teams);
         }
 
-        void IFishing.Play(List<Team> teams)
+        public void Print()
         {
-            Console.WriteLine("Начинается рыбалка на баллы");
-            for (int i = 0; i < teams.Count; i++)
+            for (int i = 0 ; i < teams.Count; i++)
             {
-                int rand = random.Next(1, 3);
-                Console.WriteLine($"Команда {teams[i].Name} получила {rand} очков");
-                teams[i].Ball += rand;
+                Console.WriteLine($"У команды {teams[i].Name}: {teams[i].Ball} балла(ов)");
             }
-            Console.WriteLine();
-        }
-
-        void IMail.Play(List<Team> teams)
-        {
-            Console.WriteLine("Начинается игра на доставку почты");
-            for (int i = 0; i < teams.Count; i++)
-            {
-                int rand = random.Next(1, 9);
-                Console.WriteLine($"Команда {teams[i].Name} получила {rand} очков");
-                teams[i].Ball += rand;
-            }
-            Console.WriteLine();
-        }
-
-        void IMouse.Play(List<Team> teams)
-        {
-            Console.WriteLine("Начинается игра в мышеловку");
-            for (int i = 0; i < teams.Count; i++)
-            {
-                int rand = random.Next(1, 15);
-                Console.WriteLine($"Команда {teams[i].Name} получила {rand} очков");
-                teams[i].Ball += rand;
-            }
-            Console.WriteLine();
-        }
-
-        void IOcean.Play(List<Team> teams)
-        {
-            Console.WriteLine("Начинается игра в море");
-            for (int i = 0; i < teams.Count; i++)
-            {
-                int rand = random.Next(1, 10);
-                Console.WriteLine($"Команда {teams[i].Name} получила {rand} очков");
-                teams[i].Ball += rand;
-            }
-            Console.WriteLine();
-        }
-
-        void ISlide.Play(List<Team> teams)
-        {
-            Console.WriteLine("Начинается игра на горке");
-            for (int i = 0; i < teams.Count; i++)
-            {
-                int rand = random.Next(1, 5);
-                Console.WriteLine($"Команда {teams[i].Name} получила {rand} очков");
-                teams[i].Ball += rand;
-            }
-            Console.WriteLine();
         }
     }
 }
